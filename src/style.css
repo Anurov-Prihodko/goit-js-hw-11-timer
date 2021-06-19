@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: pink;
+}
+.timer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+}
+.value {
+  color: #fff;
+  font-size: 5rem;
+}
+.label {
+  font-size: 2.5rem;
+  padding-left: 0.25rem;
+  color: rgba(86, 86, 88, 0.719);
+}
+.field {
+  padding: 10px;
+}
+.travel {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin: 0 0;
+}
+.beforeTravel {
+  font-size: 4rem;
+  color: #fff;
+  margin: 15px;
+}
