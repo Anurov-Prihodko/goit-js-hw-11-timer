@@ -6,8 +6,8 @@ const refs = {
 };
 
 class CountdownTimer {
-  constructor({  beforeTravelDate }) {  
-      this.beforeTravelDate = beforeTravelDate,
+  constructor({ beforeTravelDate }) {
+    this.beforeTravelDate = beforeTravelDate,
       this.onInterfaceStart(),
       this.getTimeElements(),
       this.addZero(),
@@ -31,21 +31,21 @@ class CountdownTimer {
       
       this.getClockFace(timeComponents);
   
-    }, 1000);      
+    }, 1000);
   }
   
   getTimeElements(time) {
-  const days = this.addZero(Math.floor(time / (1000 * 60 * 60 * 24)));
-  const mins = this.addZero(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-  const secs = this.addZero(Math.floor((time % (1000 * 60)) / 1000));
-  const hours = this.addZero(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    const days = this.addZero(Math.floor(time / (1000 * 60 * 60 * 24)));
+    const mins = this.addZero(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    const secs = this.addZero(Math.floor((time % (1000 * 60)) / 1000));
+    const hours = this.addZero(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
 
-  return {days, hours, mins, secs};
+    return { days, hours, mins, secs };
   }
   
   addZero = (num) => num < 10 ? '0' + num : num;
   
-  getClockFace( {days, hours, mins, secs } ) {
+  getClockFace({days, hours, mins, secs}) {
   refs.daysEl.textContent = days;
   refs.hoursEl.textContent = hours;
   refs.minsEl.textContent = mins;
@@ -59,11 +59,11 @@ const newTimer = new CountdownTimer({
     beforeTravelDate: new Date('Sep 25, 2022'),
 });
 
+newTimer.start();
+
 // function getClockFace({ days, hours, mins, secs }) {
 //   refs.daysEl.textContent = days;
 //   refs.hoursEl.textContent = hours;
 //   refs.minsEl.textContent = mins;
 //   refs.secsEl.textContent = secs;
 // };
-
-newTimer.start();
