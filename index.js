@@ -9,16 +9,14 @@ const refs = {
 
 class CountdownTimer {
   constructor({ beforeTravelDate }) {
-    this.beforeTravelDate = beforeTravelDate,
-      this.onInterfaceStart(),
-      this.getTimeElements(),
-      this.addZero(),
-      this.getClockFace()
+    this.beforeTravelDate = beforeTravelDate
+    this.onInterfaceStart()
+    this.start()
   }
 
   onInterfaceStart() {
     const timeZero = this.getTimeElements(0);
-    return this.getClockFace(timeZero);
+    this.getClockFace(timeZero);
   }
 
   start() {
@@ -26,9 +24,10 @@ class CountdownTimer {
     setInterval(() => {
       
       const currentTime = Date.now();
-      const timeLeft = this.beforeTravelDate - currentTime;      
+      const timeLeft = this.beforeTravelDate - currentTime;
       const timeComponents = this.getTimeElements(timeLeft);
-      this.onInterfaceStart(timeComponents)
+      // console.log(timeComponents);
+      this.getClockFace(timeComponents)
     }, 1000);
   }
   
@@ -56,12 +55,3 @@ const newTimer = new CountdownTimer({
     // сlockFace: getClockFace,
     beforeTravelDate: new Date('Sep 25, 2022'),
 });
-
-newTimer.start();
-
-// function getClockFace({ days, hours, mins, secs }) {
-//   refs.daysEl.textContent = days;
-//   refs.hoursEl.textContent = hours;
-//   refs.minsEl.textContent = mins;
-//   refs.secsEl.textContent = secs;
-// };
