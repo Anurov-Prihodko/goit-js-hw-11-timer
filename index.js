@@ -1,3 +1,5 @@
+'use strict'
+
 const refs = {
   daysEl: document.querySelector('[data-value="days"]'),
   hoursEl: document.querySelector('[data-value="hours"]'),
@@ -15,10 +17,8 @@ class CountdownTimer {
   }
 
   onInterfaceStart() {
-    const timeComponents = this.getTimeElements(0);
-    this.getClockFace(timeComponents);
-    // this.getClockFace(timeComponents); 
-    
+    const timeZero = this.getTimeElements(0);
+    return this.getClockFace(timeZero);
   }
 
   start() {
@@ -26,11 +26,9 @@ class CountdownTimer {
     setInterval(() => {
       
       const currentTime = Date.now();
-      const timeLeft = this.beforeTravelDate - currentTime;
+      const timeLeft = this.beforeTravelDate - currentTime;      
       const timeComponents = this.getTimeElements(timeLeft);
-      
-      this.getClockFace(timeComponents);
-  
+      this.onInterfaceStart(timeComponents)
     }, 1000);
   }
   
@@ -43,15 +41,15 @@ class CountdownTimer {
     return { days, hours, mins, secs };
   }
   
-  addZero = (num) => num < 10 ? '0' + num : num;
+  addZero = num => num < 10 ? '0' + num : num;
   
   getClockFace({days, hours, mins, secs}) {
   refs.daysEl.textContent = days;
   refs.hoursEl.textContent = hours;
   refs.minsEl.textContent = mins;
   refs.secsEl.textContent = secs;  
-  }; 
-
+  };
+  
 };
   
 const newTimer = new CountdownTimer({    
