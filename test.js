@@ -6,19 +6,15 @@ const refs = {
 };
 
 class CountdownTimer {
-  constructor({  beforeTravelDate }) {  
+  constructor({ сlockFace, beforeTravelDate }) {
+    this.сlockFace = сlockFace,
       this.beforeTravelDate = beforeTravelDate,
-      this.onInterfaceStart(),
-      this.getTimeElements(),
-      this.addZero(),
-      this.getClockFace()
+      this.onInterfaceStart()
   }
 
   onInterfaceStart() {
     const timeComponents = this.getTimeElements(0);
-    this.getClockFace(timeComponents);
-    // this.getClockFace(timeComponents); 
-    
+    this.сlockFace(timeComponents);
   }
 
   start() {
@@ -29,11 +25,11 @@ class CountdownTimer {
       const timeLeft = this.beforeTravelDate - currentTime;
       const timeComponents = this.getTimeElements(timeLeft);
       
-      this.getClockFace(timeComponents);
+      this.сlockFace(timeComponents);
   
     }, 1000);      
   }
-  
+
   getTimeElements(time) {
   const days = this.addZero(Math.floor(time / (1000 * 60 * 60 * 24)));
   const mins = this.addZero(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
@@ -43,27 +39,19 @@ class CountdownTimer {
   return {days, hours, mins, secs};
   }
   
-  addZero = (num) => num < 10 ? '0' + num : num;
-  
-  getClockFace( {days, hours, mins, secs } ) {
-  refs.daysEl.textContent = days;
-  refs.hoursEl.textContent = hours;
-  refs.minsEl.textContent = mins;
-  refs.secsEl.textContent = secs;  
-  }; 
-
+  addZero = (num) => num < 10 ? '0' + num : num ;
 };
   
 const newTimer = new CountdownTimer({    
-    // сlockFace: getClockFace,
+    сlockFace: getClockFace,
     beforeTravelDate: new Date('Sep 25, 2022'),
 });
 
-// function getClockFace({ days, hours, mins, secs }) {
-//   refs.daysEl.textContent = days;
-//   refs.hoursEl.textContent = hours;
-//   refs.minsEl.textContent = mins;
-//   refs.secsEl.textContent = secs;
-// };
+function getClockFace({ days, hours, mins, secs }) {
+  refs.daysEl.textContent = days;
+  refs.hoursEl.textContent = hours;
+  refs.minsEl.textContent = mins;
+  refs.secsEl.textContent = secs;
+};
 
 newTimer.start();
