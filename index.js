@@ -1,5 +1,3 @@
-'use strict'
-
 const refs = {
   daysEl: document.querySelector('[data-value="days"]'),
   hoursEl: document.querySelector('[data-value="hours"]'),
@@ -52,6 +50,5 @@ class CountdownTimer {
 };
   
 const newTimer = new CountdownTimer({    
-    // сlockFace: getClockFace,
     beforeTravelDate: new Date('Sep 25, 2022'),
 });
